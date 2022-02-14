@@ -300,15 +300,15 @@ try:
         recup=request.get_json()
         try:
             newlibelle=recup.get('Libelle categorie',None)
-            ca=Categorie(libelleCategorie=newlibelle)
+            ca=Categorie(libelle_cat=newlibelle)
             try:
                 ca.insert()
-                categories=Categorie.query.all()
-                categories=[d.formatage() for d in categories]
+                categorie=Categorie.query.all()
+                categorie=[d.formatage() for d in categorie]
                 return jsonify({
                     'success':True,
-                    'Categories':categories,
-                    'Count': len(categories)}
+                    'Categories':categorie,
+                    'Count': len(categorie)}
                 )
             except:abort(404)
         except:abort(400)
