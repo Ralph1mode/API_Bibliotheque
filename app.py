@@ -26,7 +26,9 @@ motdepasse = os.getenv('pgpswrd')
 db = SQLAlchemy(app)
 try:
     
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:{}@localhost:5432/Bibliotheque".format(motdepasse)
+
+     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://bhceeviwjcmfuq:9182a080516ae80750fb23906eec3887fe90778e537efe0736d289a4c81caccb@ec2-54-83-21-198.compute-1.amazonaws.com:5432/ddiel034eulo7q
+"
 # connexion à la base de données
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
