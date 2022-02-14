@@ -293,13 +293,13 @@ try:
             
        
     ##########################################################################
-    ##          Pour Ajouter Une nouvelle catégorie à celles déjà existantes.
+    ##           Ajouter Une nouvelle catégorie 
     ##########################################################################
     @app.route('/categorie',methods=['POST'])
     def add_catgeory():
         recup=request.get_json()
         try:
-            newlibelle=recup.get('Libelle categorie',None)
+            newlibelle=recup.get('libelle_cat',None)
             ca=Categorie(libelle_cat=newlibelle)
             try:
                 ca.insert()
