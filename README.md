@@ -11,7 +11,7 @@ Suivez les instructions suivantes pour installer la version 3.10.0 de python sur
 
 #### Dépendances de PIP
 
-Pour installer les dépendances, l'invite de commande `cmd` et exécuter la commande suivante:
+Pour installer les dépendances, ouvrez l'invite de commande `cmd` et exécuter la commande suivante:
 
 ```bash ou powershell ou cmd
 pip install -r requirements.txt
