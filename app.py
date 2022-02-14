@@ -290,6 +290,61 @@ try:
             return livres.format()
         except:
             abort(404)
+            
+       
+    ##########################################################################
+    ##          Pour Ajouter Une nouvelle catégorie à celles déjà existantes.
+    ##########################################################################
+    @app.route('/categorie',methods=['POST'])
+    def add_catgeory():
+        recup=request.get_json()
+        try:
+            newlibelle=recup.get('Libelle categorie',None)
+            ca=Categorie(libelleCategorie=newlibelle)
+            try:
+                ca.insert()
+                categories=Categorie.query.all()
+                categories=[d.formatage() for d in categories]
+                return jsonify({
+                    'success':True,
+                    'Categories':categories,
+                    'Count': len(categories)}
+                )
+            except:abort(404)
+        except:abort(400)
+
+    #################################################################
+    ##          Pour Ajouter Un Livre aux livres déjà existants.
+    #################################################################
+    @app.route('/livre',methods=['POST'])
+    def add_book():
+        aj=request.get_json()
+        try:
+            new_isbn=aj.get('isbn',None)
+            new_datepublication=aj.get('date_pub',None)
+            new_titre=aj.get('titre',None)
+            new_editeur=aj.get('editeur',None)
+            new_auteur=aj.get('nom_aut',None)
+            new_categorie_id=aj.get('categorie_id',None)
+            maxcat=Categorie.query.count()
+            if new_categorie_id >  maxcat:
+                abort(500)
+            else:
+                livvre=Livre(isbn=new_isbn, auteur=new_auteur, date_publication=new_datepublication,
+                editeur=new_editeur,titre=new_titre,categories_id=new_categorie_id)
+                livvre.insert()
+                books=Livre.query.all()
+                books=[l.format() for l in books]
+
+            return jsonify({
+                'success':True,
+                'Livres':books,
+                'Compte':len(books)}
+            )
+        except:
+            abort(404)
+
+    
     ########################################
     # Modifier le libellé d'une categorie
     ########################################
